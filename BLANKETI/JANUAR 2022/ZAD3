@@ -1,50 +1,53 @@
 #include <stdio.h>
-int main()
-{
-	int i, j, N, M, k, count, start, end, pom, row, col;
-	printf("Unesite M, N i k:\n");
-	scanf("%d", &M);
-	scanf("%d", &N);
-	scanf("%d", &k);
-	int A[10][10];
-	for (i = 0; i < M; i++)
-		for (j = 0; j < N; j++)
-			scanf("%d ", &A[i][j]);
-	count = 0;
-	row = 0;
-	col = 0;
-	while (count < k) {
-		if (count % 2 == 0) {
-			start = 0;
-			end = N - 1;
-			while (start < end) {
-				pom = A[row % M][start];
-				A[row % M][start] = A[row % M][end];
-				A[row % M][end] = pom;
-				start += 1;
-				end -= 1;
-			}
-			row++;
-			count++;
-		}
-		else {
-			start = 0;
-			end = M - 1;
-			while (start < end) {
-				pom = A[start][col % N];
-				A[start][col % N] = A[end][col % N];
-				A[end][col % N] = pom;
-				start += 1;
-				end -= 1;
-			}
-			col++;
-			count++;
-		}
-	}
-	for (i = 0; i < M; i++) {
-		for (j = 0; j < N; j++)
-			printf("%d ", A[i][j]);
-		printf("\n");
-	}
-	return 0;
+
+// Struktura za čuvanje informacija o reči
+struct Rec {
+    int pocetak;
+    int duzina;
+};
+
+// Funkcija koja briše reč iz rečenice na osnovu indeksa prvog slova reči i dužine reči
+void obrisi_rec(char recenica[], struct Rec rec) {
+    // Pomeranje karaktera u rečenici za dužinu reči
+    for (int i = rec.pocetak + rec.duzina; recenica[i - 1] != '\0'; ++i) {
+        recenica[i - rec.duzina] = recenica[i];
+    }
+}
+
+int main() {
+    char recenica[100];
+    printf("Unesite recenicu: ");
+    gets(recenica); // Koristimo gets umesto scanf zbog citanja cele linije teksta
+
+    // Pronalaženje prvog slova druge reči po redu
+    int indeks_pocetka = -1;
+    int brojac_reci = 0;
+    for (int i = 0; recenica[i] != '\0'; ++i) {
+        if (recenica[i] != ' ' && (i == 0 || recenica[i - 1] == ' ')) {
+            brojac_reci++;
+            if (brojac_reci == 2) {
+                indeks_pocetka = i;
+                break;
+            }
+        }
+    }
+
+    // Pronalaženje dužine druge reči
+    int duzina_reci = 0;
+    for (int i = indeks_pocetka; recenica[i] != ' ' && recenica[i] != '\0'; ++i) {
+        duzina_reci++;
+    }
+
+    // Kreiranje strukture sa informacijama o reči koju treba obrisati
+    struct Rec rec;
+    rec.pocetak = indeks_pocetka;
+    rec.duzina = duzina_reci;
+
+    // Poziv funkcije za brisanje reči iz rečenice
+    obrisi_rec(recenica, rec);
+
+    // Ispis rezultata
+    printf("Rezultat nakon brisanja druge reci: %s\n", recenica);
+
+    return 0;
 }
