@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <string.h>
+void malaUVelika(char* s)
+{
+	int i, n = strlen(s);
+	for (i = 0; i < n; i++)
+	{
+		switch (s[i])
+		{
+		case 'a':
+			s[i] = 'A';
+			break;
+		case 'e':
+			s[i] = 'E';
+			break;
+		case 'i':
+			s[i] = 'I';
+			break;
+		case 'o':
+			s[i] = 'O';
+			break;
+		case 'u':
+			s[i] = 'U';
+			break;
+		}
+	}
+}
+void main()
+{
+	char recenica[80], rec[30];
+	int i = 0, pocReci, krajReci, duzReci, maxPoc, maxKraj, maxDuz = -1;
+	printf("Unesite zeljenu recenicu:\n");
+	gets(recenica);
+	while (recenica[i] != '\0')
+	{
+		while (recenica[i] == ' ')
+			i++;
+		pocReci = i;
+		while (recenica[i] != '\0' && recenica[i] != ' ')
+			i++;
+		krajReci = i - 1;
+		duzReci = krajReci - pocReci + 1;
+		if (duzReci > maxDuz)
+		{
+			maxPoc = pocReci;
+			maxKraj = krajReci;
+			maxDuz = duzReci;
+		}
+	}
+	for (i = maxPoc; i <= maxKraj; i++)
+		rec[i - maxPoc] = recenica[i];
+	rec[maxKraj + 1] = '\0';
+	malaUVelika(rec);
+	for (i = maxPoc; i <= maxKraj; i++)
+		recenica[i] = rec[i - maxPoc];
+	printf("Izmenjena recenica:\n%s", recenica);
+}
