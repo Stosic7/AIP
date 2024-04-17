@@ -1,0 +1,28 @@
+#include <stdio.h>
+int main()
+{
+
+ int N, broj, suma, suma_konacno=0, proizvod_konacno=1,pom;
+ int cif_najm, cif_najv,cifra;
+ scanf("%d", &N);
+ for(int i=0;i<N;i++)
+ {
+ scanf("%d", &broj);
+ cif_najm = broj%10;
+ pom = broj;
+ suma = 0;
+ while(pom>0)
+ {
+ cifra = pom%10;
+ suma+=cifra;
+ pom = pom /10;
+ }
+ cif_najv = cifra;
+ if(cif_najm>cif_najv)
+ suma_konacno+=broj;
+ if(broj % suma == 0)
+ proizvod_konacno*=broj;
+ }
+ printf("Suma: %d, proizvod: %d", suma_konacno, proizvod_konacno);
+ return 0;
+}
