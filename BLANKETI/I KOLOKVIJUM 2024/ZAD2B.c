@@ -42,6 +42,28 @@ int main() {
         }
     }
 
+    //ALTERNATIVA: FOR PETLJA UMESTO WHILE//
+
+    /*for (int i = 0; i < N; i++)
+     {
+    
+         if (A[i] == K)
+         {
+    
+             for (int j = i; j < N - 1; j++)
+             {
+    
+                 A[j] = A[j + 1];
+    
+             }
+    
+             i--;
+             N--;
+    
+         }
+    
+     }*/
+
     // Prikaz elemenata niza NAKON brisanja
     printf("Elementi niza NAKON izbacivanja elemenata:\n");
     for (int i = 0; i < N; i++) {
