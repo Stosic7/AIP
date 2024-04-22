@@ -1,13 +1,22 @@
 #include <stdio.h>
 
-#define N 5  // Dimenzija niza
-#define K 2  // Broj mesta za pomeranje ulevo
-
 int main() {
-    int A[N] = {1, 2, 3, 4, 5};  // Inicijalizacija niza
-    int temp[K];  // Privremeni niz za čuvanje elemenata koji se pomeraju
+    int N, K;
+    printf("Unesite velicinu niza: ");
+    scanf("%d", &N);
 
-    // Prikazivanje niza A pre uređivanja
+    printf("Unesite broj mesta za pomeranje: ");
+    scanf("%d", &K);
+
+    int A[100], temp[100]; // Inicijalizacija nizova
+
+    // Unos elemenata niza A
+    printf("Unesite elemente niza A:\n");
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &A[i]);
+    }
+
+    // Prikazivanje niza A pre pomeranja
     printf("Niz A pre pomeranja: ");
     for (int i = 0; i < N; i++) {
         printf("%d ", A[i]);
@@ -16,18 +25,18 @@ int main() {
 
     // Pomeranje elemenata ulevo
     for (int i = 0; i < K; i++) {
-        temp[i] = A[i];  // Čuvanje prvih K elemenata u privremenom nizu
+        temp[i] = A[i]; // Čuvanje prvih K elemenata u privremenom nizu
     }
 
     for (int i = 0; i < N - K; i++) {
-        A[i] = A[i + K];  // Pomeranje preostalih elemenata ulevo
+        A[i] = A[i + K]; // Pomeranje preostalih elemenata ulevo
     }
 
     for (int i = N - K, j = 0; i < N; i++, j++) {
-        A[i] = temp[j];  // Povratak čuvanih elemenata na kraj niza
+        A[i] = temp[j]; // Povratak čuvanih elemenata na kraj niza
     }
 
-    // Prikazivanje niza A posle uređivanja
+    // Prikazivanje niza A posle pomeranja
     printf("Niz A posle pomeranja: ");
     for (int i = 0; i < N; i++) {
         printf("%d ", A[i]);
