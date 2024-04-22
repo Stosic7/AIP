@@ -11,7 +11,7 @@ int main() {
     scanf("%d", &N);
 
     // Unos elemenata niza
-    int A[N];
+    int A[100];
     printf("Unesite elemente niza:\n");
     for (i = 0; i < N; i++) {
         scanf("%d", &A[i]);
@@ -21,7 +21,8 @@ int main() {
     for (i = 1; i < N; i++) {
         if (A[i] >= A[i - 1]) {
             current_sequence++;
-        } else {
+        }
+        else {
             if (current_sequence > longest_sequence) {
                 longest_sequence = current_sequence;
             }
