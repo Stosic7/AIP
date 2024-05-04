@@ -32,7 +32,7 @@ int main() {
         for (int j = i+1; j < N; j++) { // Počinjemo od i+1 da preskočimo dijagonalu
             if (j - i <= k) {
                 int temp = A[i][j];
-                A[i][j] = A[i][j - k]; // Postoji šansa da ima bagova, nisam dovoljno plaćen da debuggujem :)
+                A[i][j] = A[i][j - k];
                 A[i][j - k] = temp;
             }
         }
@@ -42,11 +42,11 @@ int main() {
     int maxElem = A[1][0];
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            if (i + j > N-1) {
+            if (j < i) {
                 if (A[i][j] > maxElem)
                 {
 
-                    maxElem = A[i][j]; // Fixovano
+                    maxElem = A[i][j];
 
                 }
             }
@@ -64,7 +64,7 @@ int main() {
     }
 
     // Ispis maksimalnog elementa ispod glavne dijagonale
-    printf("Maksimalni element ispod glavne dijagonale: %d\n", maxElem);
+    printf("Maksimalni element ispod glavne dijagonale: %d\n", maxElem+1);
 
     return 0;
 }
