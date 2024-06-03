@@ -3,7 +3,7 @@
 int main()
 {
 
-	int i, j, pom, a[30], b[15][15], n, k, l, p;
+	int i, j, pom = -1, a[30], b[15][15], n, k, l, p;
 
 	FILE* file = fopen("matrica.txt", "r");
 
@@ -51,6 +51,7 @@ int main()
 				int temp = a[j];
 				a[j] = a[j + 1];
 				a[j + 1] = temp;
+				pom = temp;
 			}
 		}
 	}
