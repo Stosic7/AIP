@@ -1,6 +1,18 @@
 #include <stdio.h>
-int main()
-{
+
+void printMatrix(int matrix[15][15], int n) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (j != 0) {
+				printf(" | ");
+			}
+			printf("%d", matrix[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+int main() {
 	int i, j, pom, a[30], b[15][15], n, k;
 	FILE* fIn = fopen("matrica.txt", "r");
 	fscanf(fIn, "%d", &n);
@@ -8,6 +20,7 @@ int main()
 		for (j = 0; j < n; j++)
 			fscanf(fIn, "%d", &b[i][j]);
 	fclose(fIn);
+
 	for (i = 0; i < n; i++)
 		a[i] = b[0][i];
 	k = n;
@@ -17,8 +30,7 @@ int main()
 		a[k++] = b[i][i];
 	for (i = 0; i < k - 1; i++)
 		for (j = i + 1; j < k; j++)
-			if (a[i] < a[j])
-			{
+			if (a[i] < a[j]) {
 				pom = a[i];
 				a[i] = a[j];
 				a[j] = pom;
@@ -30,11 +42,8 @@ int main()
 		b[i][n - 1] = a[k++];
 	for (i = n - 2; i > 0; i--)
 		b[i][i] = a[k++];
-	for (i = 0; i < n; i++)
-	{
-		for (j = 0; j < n; j++)
-			printf("%d ", b[i][j]);
-		printf("\n");
-	}
+
+	printMatrix(b, n);
+
 	return 0;
 }
