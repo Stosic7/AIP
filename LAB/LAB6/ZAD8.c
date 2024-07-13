@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
 
@@ -34,12 +35,6 @@ int main() {
 
     // Prikazivanje rezultata
     printf("Rezultat nadovezivanja: %s\n", string1);
-
-    char rezultat[100];
-    strcpy(rezultat, string1);
-    nadovezi(rezultat, string2);
-    printf("Rezultat nadovezivanja: %s\n", rezultat);
-    
 
     return 0;
 }
