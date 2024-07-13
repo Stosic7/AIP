@@ -27,14 +27,12 @@ int main() {
     while (string1[i] != '\0') {
         i++;
     }
-    int j = 0;
-    while (string2[j] != '\0') {
-        string1[i++] = string2[j++];
-    }
-    string1[i] = '\0';
 
-    // Prikazivanje rezultata
-    printf("Rezultat nadovezivanja: %s\n", string1);
+    char rezultat[100];
+    strcpy(rezultat, string1);
+    nadovezi(rezultat, string2);
+    printf("Rezultat nadovezivanja: %s\n", rezultat);
+
 
     return 0;
 }
