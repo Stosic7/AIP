@@ -1,24 +1,40 @@
 #include <stdio.h>
-void main()
-{
-	int s = -1, sPret, x, xCopy, c, maxSuma = -1, maxSBroj;
-	do
-	{
-		sPret = s;
-		scanf("%d", &x);
-		s = 0;
-		xCopy = x;
-		while (xCopy != 0)
-		{
-			c = xCopy % 10;
-			xCopy /= 10;
-			s += c;
-		}
-		if (s > maxSuma)
-		{
-			maxSuma = s;
-			maxSBroj = x;
-		}
-	} while (sPret != s);
-	printf("%d", maxSBroj);
+#include <stdbool.h>
+
+int main() {
+
+    int n;
+    printf("Unesi broj: ");
+    scanf("%d", &n);
+    int suma1 = 0;
+    int suma2 = -1;
+    int maxSuma = 0;
+    int maxBroj = 0;
+
+    while (1) {
+        suma1 = 0;
+        
+        int k = n;
+        while (k != 0) {
+            int trCifra = k % 10;
+            suma1 += trCifra;
+            k /= 10;
+        }
+        printf("Suma cifara broja: %d je: %d\n", n, suma1);
+
+        if (suma1 > maxSuma) {
+            maxSuma = suma1;
+            maxBroj = n;
+        }
+
+        if (suma1 == suma2) break;
+        suma2 = suma1;
+
+        printf("Unesi broj: ");
+        scanf("%d", &n);
+    }
+
+    printf("Broj sa najvecom sumom cifara je: %d\n", maxBroj);
+
+    return 0;
 }
