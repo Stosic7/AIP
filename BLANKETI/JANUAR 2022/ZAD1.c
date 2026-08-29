@@ -1,28 +1,45 @@
 #include <stdio.h>
-void main()
-{
-	int broj, brojCpy, A = 0, B = 0, zbir1, zbir2, c;
-	do
-	{
-		printf("Unesite prirodni broj: ");
-		scanf("%d", &broj);
-		brojCpy = broj;
-		zbir1 = brojCpy % 10;
-		zbir2 = 0;
-		brojCpy /= 10;
-		while (brojCpy > 0)
-		{
-			c = brojCpy % 10;
-			if (brojCpy < 10)
-				zbir1 += c;
-			else
-				zbir2 += c;
-			brojCpy /= 10;
-		}
-		if (zbir1 > zbir2)
-			A += broj;
-		else if (zbir1 < zbir2)
-			B += broj;
-	} while (zbir1 != zbir2);
-	printf("Suma A=%d, suma B=%d\n", A, B);
+
+int main() {
+    int n;
+    int A = 0;
+    int B = 0;
+
+    printf("Unesi broj: ");
+    scanf("%d", &n);
+
+    while (1) {
+        int ukupnaSuma = 0;
+        int k = n;
+        while (k != 0) {
+            ukupnaSuma += k % 10;
+            k /= 10;
+        }
+
+        int zadnjaCifra = n % 10;
+        int prvaCifra = n;
+        while (prvaCifra >= 10) {
+            prvaCifra /= 10;
+        }
+        printf("prva cifra: %d\n", prvaCifra);
+
+        int sumaKrajnjih = prvaCifra + zadnjaCifra;
+        int sumaOstalih = ukupnaSuma - sumaKrajnjih;
+
+        if (sumaKrajnjih == sumaOstalih) {
+            break;
+        } else if (sumaKrajnjih > sumaOstalih) {
+            A += n;
+        } else {
+            B += n;
+        }
+
+        printf("Unesi broj: ");
+        scanf("%d", &n);
+    }
+
+    printf("A = %d\n", A);
+    printf("B = %d\n", B);
+
+    return 0;
 }
