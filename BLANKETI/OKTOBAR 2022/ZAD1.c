@@ -1,24 +1,30 @@
 #include <stdio.h>
-void main()
-{
-	int broj, proizvod;
-	proizvod = 1;
-	printf("Unesite broj: \n");
-	scanf("%d", &broj);
-	while (broj != 1)
-	{
-		if (broj % 2 == 0 && broj > 0)
-		{
-			int najmanjaCifra, najvecaCifra;
-			najmanjaCifra = broj % 10;
-			najvecaCifra = broj;
-			while (najvecaCifra > 9)
-				najvecaCifra = najvecaCifra / 10;
-			if (najvecaCifra < najmanjaCifra)
-				proizvod *= broj;
-		}
-		printf("Unesite broj: \n");
-		scanf("%d", &broj);
-	}
-	printf("Proizvod unetih brojeva je %d\n", proizvod);
+
+int main() {
+    int n;
+    int proizvod = 1;
+
+    printf("Unesi broj: ");
+    scanf("%d", &n);
+
+    while (n != 1) {
+        if (n > 0 && n % 2 == 0) {
+            int zadnjaCifra = n % 10;
+            int prvaCifra = n;
+            while (prvaCifra >= 10) {
+                prvaCifra /= 10;
+            }
+
+            if (prvaCifra < zadnjaCifra) {
+                proizvod *= n;
+            }
+        }
+
+        printf("Unesi broj: ");
+        scanf("%d", &n);
+    }
+
+    printf("Proizvod je: %d\n", proizvod);
+
+    return 0;
 }
