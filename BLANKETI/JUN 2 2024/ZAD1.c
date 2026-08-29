@@ -1,25 +1,33 @@
 #include <stdio.h>
+
 int main() {
-	int b, c, sumaP = 0, sumaN = 0, i = 0, razlika;
-	scanf("%d", &b);
-	while (b != 0) {
-		c = b % 10;
-		if (i == 0) {
-			sumaN += c;
-			i = 1;
-		}
-		else {
-			sumaP += c;
-			i = 0;
-		}
-		b /= 10;
-	}
-	razlika = sumaN - sumaP;
-	if (razlika == 0 || razlika == 11) {
-		printf("Deljiv");
-	}
-	else {
-		printf("Nedeljiv");
-	}
-	return 0;
+    int n;
+    printf("Unesi ceo broj: ");
+    scanf("%d", &n);
+
+    int zbirNeparnih = 0;
+    int zbirParnih = 0;
+    int pozicija = 1;
+
+    int k = n;
+    while (k != 0) {
+        int cifra = k % 10;
+        if (pozicija % 2 != 0) {
+            zbirNeparnih += cifra;
+        } else {
+            zbirParnih += cifra;
+        }
+        pozicija++;
+        k /= 10;
+    }
+
+    int razlika = zbirNeparnih - zbirParnih;
+
+    if (razlika == 0 || razlika == 11) {
+        printf("Deljiv\n");
+    } else {
+        printf("Nedeljiv\n");
+    }
+
+    return 0;
 }
