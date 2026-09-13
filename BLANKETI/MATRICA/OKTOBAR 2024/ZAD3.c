@@ -5,18 +5,23 @@ int main() {
     int n;
     int A[MAX][MAX];
 
-    printf("Unesi dimenziju matrice N: ");
-    scanf("%d", &n);
+    FILE* f = fopen("matrica.txt", "r");
+    if (!f) {
+        printf("Greska: fajl matrica.txt ne postoji.\n");
+        return 1;
+    }
 
-    printf("Unesi elemente matrice A:\n");
+    fscanf(f, "%d", &n);
+
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            scanf("%d", &A[i][j]);
+            fscanf(f, "%d", &A[i][j]);
         }
     }
 
-    int polovina = n / 2;
+    fclose(f);
 
+    int polovina = n / 2;
     int zbirGornjiLevi = 0;
     int zbirGornjiDesni = 0;
     int zbirDonjiLevi = 0;
