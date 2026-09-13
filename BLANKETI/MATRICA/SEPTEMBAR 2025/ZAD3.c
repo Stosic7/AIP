@@ -6,17 +6,21 @@ int main() {
     double B[MAX][MAX];
     double A[MAX][MAX];
 
-    printf("Unesi broj vrsta M: ");
-    scanf("%d", &m);
-    printf("Unesi broj kolona N: ");
-    scanf("%d", &n);
+    FILE* f = fopen("ulaz.txt", "r");
+    if (!f) {
+        printf("Greska: fajl ulaz.txt ne postoji.\n");
+        return 1;
+    }
 
-    printf("Unesi elemente matrice B:\n");
+    fscanf(f, "%d %d", &m, &n);
+
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
-            scanf("%lf", &B[i][j]);
+            fscanf(f, "%lf", &B[i][j]);
         }
     }
+
+    fclose(f);
 
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
