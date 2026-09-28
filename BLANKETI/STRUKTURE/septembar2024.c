@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include 
+#include <stdlib.h>
 
-typedef struct {
+typedef struct{
     int a;
     int b;
     int c;
@@ -16,7 +16,7 @@ int Romb(Cetvorougao c) {
 }
 
 int Paralelogram(Cetvorougao c) {
-    if (c.a == c.b && c.c == c.d) {
+    if (c.a == c.c && c.b == c.d) {
         return 1;
     }
     return 0;
@@ -28,11 +28,13 @@ int Obim(Cetvorougao c) {
 
 int main() {
     int brojCetvorouglova;
+    printf("Unesite broj tacaka: ");
     scanf("%d", &brojCetvorouglova);
 
     Cetvorougao *nizCetvorouglova = (Cetvorougao*)malloc(brojCetvorouglova * sizeof(Cetvorougao));
 
     for (int i = 0; i < brojCetvorouglova; i++) {
+        printf("Unesi tacke za cetvorougao #%d\n", i+1);
         scanf("%d %d %d %d", &nizCetvorouglova[i].a, &nizCetvorouglova[i].b, &nizCetvorouglova[i].c, &nizCetvorouglova[i].d);
     }
 
@@ -41,8 +43,10 @@ int main() {
 
     for (int i = 0; i < brojCetvorouglova; i++) {
         if (Romb(nizCetvorouglova[i])) {
+            printf("Cetvorougao %d je romb\n", i+1);
             sumaObimaRombova += Obim(nizCetvorouglova[i]);
         } else if (Paralelogram(nizCetvorouglova[i])) {
+            printf("Cetvorougao %d je paralelogram\n", i+1);
             sumaObimaParalelograma += Obim(nizCetvorouglova[i]);
         }
     }
@@ -52,7 +56,7 @@ int main() {
         razlikaObima = -razlikaObima;
     }
 
-    printf("%d\n", razlikaObima);
+    printf("Razlika obima: %d\n", razlikaObima);
 
     free(nizCetvorouglova);
 
