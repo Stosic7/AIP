@@ -10,7 +10,7 @@ int main() {
     } else {
         int zadnjaCifra = n % 10;
         int prvaCifra = n;
-        while (prvaCifra != 0) {
+        while (prvaCifra > 9) {
             prvaCifra /= 10;
         }
 
